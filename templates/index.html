@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Code Review Assistant</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="logo">AI Code Review <span>Assistant</span></div>
+      <nav>
+        <button class="nav-btn active">&#9654; Review</button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="online-dot"></span>LLaMA3-70B &middot; Groq
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="tab active">
+        <div class="topbar">
+          <div>
+            <div class="path">~/review</div>
+            <div class="sub">Paste code. Get instant AI review.</div>
+          </div>
+          <select id="language" class="lang-pick" onchange="updateFilename()">
+            <option>Python</option>
+            <option>JavaScript</option>
+            <option>TypeScript</option>
+            <option>Java</option>
+            <option>C++</option>
+            <option>Go</option>
+            <option>Rust</option>
+            <option>SQL</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="editor-box">
+          <div class="editor-bar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="fname" id="fname">main.py</span>
+            <span class="ccount"><span id="cc">0</span>/10000</span>
+          </div>
+          <div class="editor-inner">
+            <div class="ln" id="ln">1</div>
+            <textarea id="code" class="editor" spellcheck="false" placeholder="// paste your code here..."></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="run-btn" class="btn-run" onclick="runReview()">&#9654; Run Review</button>
+          <button class="btn-clear" onclick="clearAll()">Clear</button>
+          <span id="err" class="err hidden"></span>
+        </div>
+
+        <div id="result" class="result hidden">
+          <div class="result-head">
+            <span id="quality-badge" class="badge"></span>
+            <span id="summary" class="rsummary"></span>
+            <span id="rmeta" class="rmeta"></span>
+          </div>
+          <div class="result-grid">
+            <div class="rcard">
+              <div class="rcard-head">Issues <span id="ic" class="cnt">0</span></div>
+              <div id="issues"></div>
+            </div>
+            <div class="rcard">
+              <div class="rcard-head">Suggestions <span id="sc" class="cnt">0</span></div>
+              <div id="suggestions"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
