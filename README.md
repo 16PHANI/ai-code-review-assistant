@@ -132,7 +132,6 @@ echo GROQ_API_KEY=your_key_here> groq.env
 docker-compose up --build
 ```
 
-Open http://localhost:8080
 
 ### Without Docker
 
